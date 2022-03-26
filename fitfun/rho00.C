@@ -1,0 +1,12 @@
+///////////////////////////////////////////////////////////////////////////////
+// angular distributions for spin alignment
+// par[0] - average, par[1] - r00
+///////////////////////////////////////////////////////////////////////////////
+Double_t CosThetaStar(Double_t *x, Double_t *par)
+{
+  double cs = x[0];
+  double A = par[0];
+  double r00 = par[1];
+
+  return A*( (1-r00) + (3*r00-1.)*cs*cs);
+}
