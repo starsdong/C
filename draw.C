@@ -3,6 +3,7 @@
 #include "TGraphErrors.h"
 #include "TGraphAsymmErrors.h"
 #include "TBox.h"
+#include "TArrow.h"
 #include "iostream"
 
 void drawHistBox(double x1=0., double x2=1., double y1=0., double y2=1., int lineWidth=3333, int lineStyle=1, int lineColor=1)
@@ -49,6 +50,17 @@ void drawLine(double x1=0., double y1=0., double x2=0., double y2=1., int lineWi
   la->SetLineStyle(lineStyle);
   la->SetLineColor(lineColor);
   la->Draw("same");
+}
+
+void drawArrow(double x1=0., double y1=0., double x2=0., double y2=1., double arrowSize=0.05, double angle=45, int lineWidth=1, int lineStyle=1, int lineColor=1)
+//void drawLine(double x1, double y1, double x2, double y2, int lineWidth, int lineStyle, int lineColor)
+{
+  TArrow *la = new TArrow(x1,y1,x2,y2,arrowSize,"|>");
+  la->SetAngle(angle);
+  la->SetLineWidth(lineWidth);
+  la->SetLineStyle(lineStyle);
+  la->SetLineColor(lineColor);
+  la->Draw();
 }
 
 void drawSysError(TGraphErrors *gr, double xoffset=0.05, double yoffset=0.03, int lineColor=1, bool logx=0, bool logy=0)
