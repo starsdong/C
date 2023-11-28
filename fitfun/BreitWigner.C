@@ -1,0 +1,9 @@
+///////////////////////////////////////////////////////////////////////////////
+// Breit-Wigner function
+// par[0] - constant, par[1] - mass , par[2] - gamma
+///////////////////////////////////////////////////////////////////////////////
+Double_t BreitWigner(Double_t *x, Double_t *par)
+{
+  Double_t A = par[0]/(pow((x[0]*x[0]-par[1]*par[1]),2.0)+par[1]*par[1]*par[2]*par[2]);
+  return A;
+}
