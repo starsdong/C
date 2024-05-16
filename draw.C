@@ -192,3 +192,10 @@ void setGraphLine(TGraph *gr, int lineStyle=1, int lineColor=1, int lineWidth=2)
   gr->SetLineColor(lineColor);
   gr->SetLineWidth(lineWidth);
 }
+
+void setGraphFill(TGraphErrors *gr, int fillStyle=1, int fillColor=1, double fillAlpha=1)
+{
+  gr->SetFillStyle(fillStyle);
+  gr->SetFillColorAlpha(fillColor, fillAlpha);
+  gr->SetMarkerSize();
+}
