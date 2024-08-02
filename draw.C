@@ -144,6 +144,37 @@ void drawSysBox(TGraphErrors *gr, double xoffset=0.05, int boxColor=1, bool logx
 
 }
 
+void drawSysBoxInRange(TGraphErrors *gr, double xoffset=0.05, int boxColor=1, bool logx=0, double ymin=-1e9, double ymax=1e9)
+{
+  if(!gr) {
+     std::cout << "No TGraphErrors, return!" << std::endl;
+     return;
+  }
+   
+  for(int i=0;i<gr->GetN();i++) {
+    double x0 = gr->GetX()[i];
+    double y0 = gr->GetY()[i];
+    double ye = gr->GetEY()[i];
+    double x1 = x0-xoffset;
+    double x2 = x0+xoffset;
+    if(logx) {
+      x1 = x0*(1-xoffset);
+      x2 = x0*(1+xoffset);
+    }
+    
+    double ylow = y0-ye;
+    if(ylow<ymin) ylow = ymin;
+    double yup = y0+ye;
+    if(yup>ymax) yup = ymax;
+    
+    TBox *box = new TBox(x1,ylow,x2,yup);
+    box->SetFillColor(boxColor);
+    box->SetLineColor(boxColor);
+    box->Draw("same");
+  }
+}
+
+
 void drawSysBox(TGraphAsymmErrors *gr, double xoffset=0.05, int boxColor=1, bool logx=0)
 {
   if(!gr) {
