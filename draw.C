@@ -52,10 +52,10 @@ void drawLine(double x1=0., double y1=0., double x2=0., double y2=1., int lineWi
   la->Draw("same");
 }
 
-void drawArrow(double x1=0., double y1=0., double x2=0., double y2=1., double arrowSize=0.05, double angle=45, int lineWidth=1, int lineStyle=1, int lineColor=1)
+void drawArrow(double x1=0., double y1=0., double x2=0., double y2=1., double arrowSize=0.05, double angle=45, int lineWidth=1, int lineStyle=1, int lineColor=1, char *option = "|>")
 //void drawLine(double x1, double y1, double x2, double y2, int lineWidth, int lineStyle, int lineColor)
 {
-  TArrow *la = new TArrow(x1,y1,x2,y2,arrowSize,"|>");
+  TArrow *la = new TArrow(x1,y1,x2,y2,arrowSize,option);
   la->SetAngle(angle);
   la->SetLineWidth(lineWidth);
   la->SetLineStyle(lineStyle);
