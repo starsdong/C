@@ -109,3 +109,18 @@ Double_t Gauss2DRot(Double_t *x, Double_t *par)
   Double_t A = par[0]/(2.0*TMath::Pi())/par[2]/par[4]*TMath::Exp(-0.5*TMath::Power(x_p[0]/par[2], 2.0)-0.5*TMath::Power(x_p[1]/par[4],2.0));
   return A;
 }
+///////////////////////////////////////////////////////////////////////////////
+// student-t function
+// par[0] - normalization, par[1] - mean, par[2] - sigma, par[3] - nu
+// nu->inf, this is Gaussian
+///////////////////////////////////////////////////////////////////////////////
+Double_t StudentT(Double_t *x, Double_t *par)
+{
+  Double_t norm = par[0];
+  Double_t mean = par[1];
+  Double_t sigma = par[2];
+  Double_t nu = par[3];
+
+  Double_t st = norm * (TMath::Gamma((nu+1.0)/2.0)/(TMath::Gamma(nu/2.0)*TMath::Sqrt(TMath::Pi()*nu)*sigma)) * TMath::Power( (1.0+TMath::Power((x[0]-mean)/sigma,2.0)/nu), (-(nu+1.0)/2.0) );
+  return st;
+}
